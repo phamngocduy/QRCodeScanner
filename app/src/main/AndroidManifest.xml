@@ -3,8 +3,9 @@
     package="com.blikoon.qrcodescannerlibrary">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <!--uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/-->
+    <!-- uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/ -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,13 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name="vn.istech.login.MainActivity"
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ScanActivity"></activity>
     </application>
 
 </manifest>

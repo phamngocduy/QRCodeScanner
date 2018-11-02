@@ -1,6 +1,7 @@
 package com.blikoon.qrcodescanner;
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,6 +17,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -232,7 +235,11 @@ public class QrCodeActivity extends Activity implements Callback, OnClickListene
 
     }
 
+    private boolean alreadyAsked = false;
     private boolean checkCameraHardWare(Context context) {
+        if (!alreadyAsked && (alreadyAsked = true) &&
+            ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED)
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA }, 100);
         PackageManager packageManager = context.getPackageManager();
         return packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA);
     }
